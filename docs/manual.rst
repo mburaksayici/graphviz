@@ -162,7 +162,7 @@ Jupyter notebooks
 :class:`.Graph` and :class:`.Digraph` objects have a
 :meth:`~.Graph._repr_svg_`-method so they can be rendered and displayed
 directly inside a `Jupyter notebook`_. For an example, check the
-``examples/notebook.ipynb`` file in the
+``examples/graphviz-notebook.ipynb`` file in the
 `source repository/distribution <notebook.ipynb_>`_ (or the same rendered
 within nbviewer_).
 
@@ -618,8 +618,8 @@ cycles.
 .. _HTML-like labels: https://graphviz.gitlab.io/_pages/doc/info/shapes.html#html
 
 .. _Jupyter notebook: https://jupyter.org
-.. _notebook.ipynb: https://github.com/xflr6/graphviz/blob/master/examples/notebook.ipynb
-.. _nbviewer: https://nbviewer.jupyter.org/github/xflr6/graphviz/blob/master/examples/notebook.ipynb
+.. _graphviz-notebook.ipynb: https://github.com/xflr6/graphviz/blob/master/examples/graphviz-notebook.ipynb
+.. _nbviewer: https://nbviewer.jupyter.org/github/xflr6/graphviz/blob/master/examples/graphviz-notebook.ipynb
 .. _Jupyter Qt Console: https://qtconsole.readthedocs.io
 .. _spyderconsole: https://docs.spyder-ide.org/ipythonconsole.html
 .. _Spyder IDE: https://github.com/spyder-ide/spyder
