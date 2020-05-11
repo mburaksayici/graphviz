@@ -37,12 +37,12 @@ __all__ = ['Graph', 'Digraph']
 class Dot(files.File):
     """Assemble, save, and render DOT source code, open result in viewer."""
 
-    _comment = '// %s'
-    _subgraph = 'subgraph %s{'
-    _subgraph_plain = '%s{'
-    _node = _attr = '\t%s%s'
+    _comment = u'// %s\n'
+    _subgraph = u'subgraph %s{\n'
+    _subgraph_plain = u'%s{\n'
+    _node = _attr = u'\t%s%s\n'
     _attr_plain = _attr % ('%s', '')
-    _tail = '}'
+    _tail = u'}\n'
 
     _quote = staticmethod(lang.quote)
     _quote_edge = staticmethod(lang.quote_edge)
@@ -115,7 +115,7 @@ class Dot(files.File):
 
     def __str__(self):
         """The DOT source code as string."""
-        return '\n'.join(self)
+        return ''.join(self)
 
     source = property(__str__, doc=__str__.__doc__)
 
@@ -282,9 +282,9 @@ class Graph(Dot):
         corresponding attribute name after instance creation.
     """
 
-    _head = 'graph %s{'
-    _head_strict = 'strict %s' % _head
-    _edge = '\t%s -- %s%s'
+    _head = u'graph %s{\n'
+    _head_strict = u'strict %s' % _head
+    _edge = u'\t%s -- %s%s\n'
     _edge_plain = _edge % ('%s', '%s', '')
 
     @property
@@ -299,9 +299,9 @@ class Digraph(Dot):
     if Graph.__doc__ is not None:
         __doc__ += Graph.__doc__.partition('.')[2]
 
-    _head = 'digraph %s{'
-    _head_strict = 'strict %s' % _head
-    _edge = '\t%s -> %s%s'
+    _head = u'digraph %s{\n'
+    _head_strict = u'strict %s' % _head
+    _edge = u'\t%s -> %s%s\n'
     _edge_plain = _edge % ('%s', '%s', '')
 
     @property

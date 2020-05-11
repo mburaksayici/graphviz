@@ -168,6 +168,12 @@ def run(cmd, input=None, capture_output=False, check=False, encoding=None,
         else:
             raise
 
+    if input is not None and iter(input) is input:
+        stdin_write = proc.stdin.write
+        for chunk in input:
+            stdin_write(chunk)
+        input = None
+
     out, err = proc.communicate(input)
 
     if not quiet and err:
