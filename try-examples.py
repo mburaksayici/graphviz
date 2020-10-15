@@ -7,6 +7,8 @@ import glob
 
 import graphviz  # noqa: F401
 
+#graphviz.set_default_format('svg')
+
 os.chdir('examples')
 for filename in glob.iglob('*.py'):
     with io.open(filename, encoding='utf-8') as fd:

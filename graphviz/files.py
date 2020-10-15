@@ -23,21 +23,11 @@ log = logging.getLogger(__name__)
 
 class Base(object):
 
-    _format = 'pdf'
     _engine = 'dot'
+
+    _format = 'pdf'
+
     _encoding = ENCODING
-
-    @property
-    def format(self):
-        """The output format used for rendering (``'pdf'``, ``'png'``, ...)."""
-        return self._format
-
-    @format.setter
-    def format(self, format):
-        format = format.lower()
-        if format not in backend.FORMATS:
-            raise ValueError('unknown format: %r' % format)
-        self._format = format
 
     @property
     def engine(self):
@@ -50,6 +40,18 @@ class Base(object):
         if engine not in backend.ENGINES:
             raise ValueError('unknown engine: %r' % engine)
         self._engine = engine
+
+    @property
+    def format(self):
+        """The output format used for rendering (``'pdf'``, ``'png'``, ...)."""
+        return self._format
+
+    @format.setter
+    def format(self, format):
+        format = format.lower()
+        if format not in backend.FORMATS:
+            raise ValueError('unknown format: %r' % format)
+        self._format = format
 
     @property
     def encoding(self):
