@@ -222,6 +222,47 @@ def render(engine, format, filepath, renderer=None, formatter=None, quiet=False)
     return rendered
 
 
+
+
+def run(cmd, input=None, capture_output=False, check=False, encoding=None,
+        quiet=False, **kwargs):
+    """Run the command described by cmd and return its (stdout, stderr) tuple."""
+    log.debug('run %r', cmd)
+
+    if input is not None:
+        kwargs['stdin'] = subprocess.PIPE
+        if encoding is not None:
+            input = input.encode(encoding)
+
+    if capture_output:
+        kwargs['stdout'] = kwargs['stderr'] = subprocess.PIPE
+
+    try:
+        proc = subprocess.Popen(cmd, startupinfo=get_startupinfo(), **kwargs)
+    except OSError as e:
+        if e.errno == errno.ENOENT:
+            raise ExecutableNotFound(cmd)
+        else:
+            raise
+
+    out, err = proc.communicate(input)
+
+    if not quiet and err:
+        _compat.stderr_write_bytes(err, flush=True)
+
+    if encoding is not None:
+        if out is not None:
+            out = out.decode(encoding)
+        if err is not None:
+            err = err.decode(encoding)
+
+    if check and proc.returncode:
+        raise CalledProcessError(proc.returncode, cmd,
+                                 output=out, stderr=err)
+
+    return out, err
+
+
 def pipe(engine, format, data, renderer=None, formatter=None, quiet=False):
     """Return ``data`` piped through Graphviz ``engine`` into ``format``.
 
